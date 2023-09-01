@@ -1,5 +1,6 @@
 import pygame
 import sys
+from BallMovement import move_ball
 
 # Initialize Pygame
 pygame.init()
@@ -35,19 +36,13 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE and not jumping:
-                ball_velocity[1] = -10  # Jumping
 
-    # Apply gravity
-    ball_velocity[1] += GRAVITY
-
-    # Update ball position
-    ball_rect.move_ip(ball_velocity[0], ball_velocity[1])
+    move_ball(ball_rect, ball_velocity, GRAVITY)  # Update ball position
 
     # Check collision with rect
     if ball_rect.colliderect(rect_rect):
         # Handle collision here
+        pass
 
     # Draw everything
     screen.fill(WHITE)
